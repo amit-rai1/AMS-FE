@@ -1,0 +1,9 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import api from '../services/api';
+import logo from '../public/logo.png';
+
+export default function Login({ onLogin }) { const [form, setForm] = useState({ email: '', password: '' }); const [error, setError] = useState(''); const navigate = useNavigate();
+  const submit = async (event) => { event.preventDefault(); try { const { data } = await api.post('/auth/login', form); localStorage.setItem('attendly_token', data.token); localStorage.setItem('attendly_user', JSON.stringify(data.user)); onLogin(data.user); navigate('/'); } catch (err) { setError(err.response?.data?.message || 'Unable to sign in'); } };
+  return <div className="login-page"><div className="login-art"><div className="brand inverse"><img src={logo} alt="BCA Department logo" /><span>BCA DEPARTMENT</span></div><div className="art-copy"><span className="eyebrow">COLLEGE ATTENDANCE, REIMAGINED</span><h1>Make every<br /><em>presence</em> count.</h1><p>A calmer, clearer way to keep your campus moving forward.</p></div><div className="art-footer">M.L.K (P.G) COLLEGE, BALRAMPUR <span>•</span> BCADEPT2026@GMAIL.COM<br /><small>WEBSITE POWERED BY BCA DEPARTMENT</small></div></div><div className="login-form"><div className="login-card"><span className="eyebrow">WELCOME BACK</span><h2>Sign in to your workspace</h2><p className="muted">Use your faculty or administrator account to continue.</p>{error && <div className="alert alert-danger">{error}</div>}<form onSubmit={submit}><label>Email address<input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required /></label><label>Password<input type="password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} required /></label><button className="primary-button w-100">Continue <i className="bi bi-arrow-right" /></button></form></div></div></div>;
+}

@@ -1,0 +1,100 @@
+/* Responsive layout refinements for phones, tablets, and narrow desktop windows. */
+* { min-width: 0; }
+.export-actions, .report-filter-row { display: flex; gap: 8px; align-items: center; }
+.subject-filter { color: var(--muted); font-size: 12px; font-weight: 600; }
+.subject-filter select { display: block; min-width: 240px; border: 1px solid var(--line); border-radius: 7px; padding: 10px 32px 10px 12px; margin-top: 7px; color: var(--ink); background: #fff; }
+.marked-banner { display: flex; align-items: center; gap: 12px; padding: 13px 15px; background: #e8f6f1; border: 1px solid #bde4d8; border-radius: 8px; margin: -5px 0 24px; color: #217c6d; }
+.marked-banner > i { font-size: 20px; }
+.marked-banner div { flex: 1; }
+.marked-banner strong, .marked-banner span { display: block; }
+.marked-banner span { font-size: 12px; margin-top: 3px; color: #54877e; }
+.status.marked { color: #217c6d; background: #e3f5ee; }
+.status.pending { color: #8b9895; background: #f0f3f2; }
+.subject-summary-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 20px; }
+.subject-summary { text-align: left; border: 1px solid var(--line); border-radius: 9px; background: #fff; padding: 15px; color: var(--ink); transition: border-color .2s, box-shadow .2s; }
+.subject-summary:hover, .subject-summary.selected { border-color: var(--teal); box-shadow: 0 4px 15px #1f8f8317; }
+.subject-summary span, .subject-summary small { display: block; color: var(--muted); }
+.subject-summary span { font-size: 11px; font-weight: 700; letter-spacing: 1px; }
+.subject-summary strong { display: block; font: 700 22px 'Space Grotesk'; margin: 5px 0; }
+.subject-summary small { font-size: 11px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.batch-context { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; padding: 12px 14px; margin: -8px 0 22px; background: #eef7f5; border: 1px solid #d2e9e3; border-radius: 8px; color: #28786c; }
+.batch-context strong { color: #164f47; }
+.batch-context span { color: #65847f; font-size: 12px; }
+.attendance-summary { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: -4px 0 22px; }
+.attendance-count { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+.attendance-count strong { font: 700 22px 'Space Grotesk'; }
+.attendance-count span { color: var(--muted); font-size: 12px; }
+.attendance-count.present strong { color: #16836f; }.attendance-count.absent strong { color: #c84f43; }.attendance-count.pending strong { color: #8b9895; }
+.attendance-search { display: flex; align-items: center; gap: 8px; max-width: 440px; margin: 0 0 16px; border: 1px solid var(--line); border-radius: 7px; padding: 0 12px; background: #fff; }
+.attendance-search input { flex: 1; min-width: 0; border: 0; outline: 0; padding: 11px 0; }.attendance-search span { color: var(--muted); font-size: 11px; white-space: nowrap; }
+.attendance-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; border-top: 1px solid var(--line); }.student-identity strong,.student-identity small { display: block; }.student-identity small { color: var(--muted); margin-top: 4px; font-size: 12px; }
+@media (max-width: 1100px) {
+  .page-content { padding-left: 28px; padding-right: 28px; }
+  .attendance-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .subject-summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 700px) {
+  .topbar { padding: 18px; }
+  .topbar h1 { font-size: 16px; }
+  .page-content { padding: 22px 14px 40px; }
+  .page-title h2, .welcome-row h2 { font-size: 24px; }
+  .page-title .primary-button, .welcome-row .primary-button { width: 100%; }
+  .attendance-panel { padding: 16px; }
+  .attendance-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .attendance-row { align-items: flex-start; flex-direction: column; gap: 10px; }.status-toggle { width: 100%; }.status-toggle button { flex: 1; }
+  .attendance-filters { grid-template-columns: 1fr; gap: 6px; }
+  .register-head { gap: 12px; flex-direction: column; }
+  .quick-actions { width: 100%; }
+  .quick-actions button { flex: 1; }
+  .marked-banner { align-items: flex-start; flex-wrap: wrap; }
+  .marked-banner .secondary-button { width: 100%; }
+  .table-wrap { margin: 0 -2px; }
+  table { min-width: 720px; }
+  .panel { padding: 16px; }
+  .report-controls { align-items: stretch; }
+  .report-filter-row { align-items: stretch; flex-direction: column; }
+  .search-box, .subject-filter, .subject-filter select { width: 100%; min-width: 0; }
+  .threshold { justify-content: space-between; }
+  .export-actions { width: 100%; }
+  .export-actions button { flex: 1; padding-left: 8px; padding-right: 8px; }
+  .subject-summary-grid { grid-template-columns: 1fr; }
+  .subject-summary small { white-space: normal; }
+}
+@media print {
+  .sidebar, .topbar, .page-title .export-actions, .report-controls, .subject-summary-grid { display: none !important; }
+  .main-content { margin: 0; }
+  .page-content { padding: 0; }
+  .panel { border: 0; }
+}
+
+/* High-contrast attendance choices. */
+.status-toggle { gap: 8px; }
+.status-toggle button {
+  min-width: 92px;
+  min-height: 42px;
+  padding: 9px 14px;
+  border: 2px solid #d8e3e0;
+  border-radius: 7px;
+  background: #fff;
+  color: #526662;
+  font-size: 13px;
+  font-weight: 700;
+  transition: background .15s ease, border-color .15s ease, color .15s ease, box-shadow .15s ease;
+}
+.status-toggle button:hover { border-color: var(--teal); color: var(--teal-dark); }
+.status-toggle button.selected.present {
+  border-color: #16836f;
+  background: #d7f3ea;
+  color: #096653;
+  box-shadow: 0 0 0 3px #16836f24;
+}
+.status-toggle button.selected.absent {
+  border-color: #c84f43;
+  background: #fde0dc;
+  color: #a9362d;
+  box-shadow: 0 0 0 3px #c84f4324;
+}
+@media (max-width: 700px) {
+  .status-toggle { gap: 6px; }
+  .status-toggle button { min-width: 86px; min-height: 44px; }
+}
